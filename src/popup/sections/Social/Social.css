@@ -1,0 +1,295 @@
+.social-section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.social-card-body {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-og-icon {
+  color: #2563eb;
+}
+
+.social-twitter-icon {
+  color: #0284c7;
+}
+
+.social-json-icon {
+  color: #d97706;
+}
+
+.social-card-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.social-empty-msg {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-style: italic;
+  padding: 8px 0;
+}
+
+.social-fields-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Image preview box */
+.social-preview-box {
+  display: flex;
+  gap: 12px;
+  padding: 10px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  align-items: center;
+}
+
+.social-preview-img-wrap {
+  width: 90px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-color);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.social-preview-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.social-preview-meta {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.social-preview-label {
+  font-size: 10.5px;
+  font-weight: 700;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.social-preview-url {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.social-preview-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 2px;
+}
+
+/* Meta Table */
+.social-meta-table {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background-color: var(--bg-primary);
+}
+
+.social-meta-row {
+  display: flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 12px;
+}
+
+.social-meta-row:last-child {
+  border-bottom: none;
+}
+
+.social-meta-prop-col {
+  width: 180px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.social-meta-prop {
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.social-duplicate-tag {
+  font-size: 9.5px;
+  font-weight: 700;
+  color: var(--warning);
+  background-color: var(--warning-bg);
+  border: 1px solid var(--warning-border);
+  padding: 1px 4px;
+  border-radius: var(--radius-sm);
+}
+
+.social-meta-val-col {
+  flex: 1;
+  min-width: 0;
+  padding: 0 8px;
+}
+
+.social-meta-val {
+  color: var(--text-secondary);
+  word-break: break-word;
+  line-height: 1.35;
+}
+
+.social-meta-act-col {
+  flex-shrink: 0;
+}
+
+/* Structured data subsection */
+.schema-subsection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.schema-sub-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.schema-sub-title {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.jsonld-blocks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.jsonld-block-card {
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-primary);
+}
+
+.jsonld-invalid {
+  border-color: var(--error-border);
+}
+
+.jsonld-block-header {
+  padding: 8px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  background-color: var(--bg-secondary);
+  transition: background-color 0.15s ease;
+}
+
+.jsonld-block-header:hover {
+  background-color: var(--bg-tertiary);
+}
+
+.jsonld-header-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--text-primary);
+}
+
+.jsonld-block-title {
+  font-weight: 700;
+}
+
+.jsonld-block-types {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.jsonld-header-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.jsonld-block-body {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--border-color);
+}
+
+.jsonld-error-banner {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  background-color: var(--error-bg);
+  border: 1px solid var(--error-border);
+  color: var(--error);
+  font-size: 11.5px;
+  font-weight: 500;
+  border-radius: var(--radius-sm);
+}
+
+.jsonld-code-view {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+  overflow-x: auto;
+  max-height: 180px;
+  color: var(--text-primary);
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+/* Microdata Chips */
+.microdata-types-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.microdata-chip {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  background-color: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+}
