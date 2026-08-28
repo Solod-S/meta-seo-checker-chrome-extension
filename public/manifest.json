@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "META SEO Checker — On-Page SEO Inspector",
+  "name": "META SEO Checker",
   "short_name": "META SEO Checker",
   "version": "1.0.0",
   "description": "Inspect titles, meta tags, headings, images, links, Open Graph, Twitter Cards and structured data in one click.",
