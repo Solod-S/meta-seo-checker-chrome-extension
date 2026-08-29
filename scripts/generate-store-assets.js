@@ -399,7 +399,10 @@ async function generateSmallTile() {
   const canvas = createCanvas(width, height);
   const ctx = canvas.getContext('2d');
 
-  // Background
+  const iconPath = path.resolve(__dirname, '../public/icons/icon128.png');
+  const iconImg = await loadImage(iconPath);
+
+  // Background Gradient
   const bgGrad = ctx.createLinearGradient(0, 0, width, height);
   bgGrad.addColorStop(0, '#090d16');
   bgGrad.addColorStop(0.5, '#0f172a');
@@ -407,69 +410,85 @@ async function generateSmallTile() {
   ctx.fillStyle = bgGrad;
   ctx.fillRect(0, 0, width, height);
 
-  // Radial glow
-  const glow = ctx.createRadialGradient(220, 140, 0, 220, 140, 200);
-  glow.addColorStop(0, 'rgba(37, 99, 235, 0.3)');
+  // Radial Glow behind icon
+  const glow = ctx.createRadialGradient(220, 58, 0, 220, 58, 160);
+  glow.addColorStop(0, 'rgba(37, 99, 235, 0.38)');
   glow.addColorStop(1, 'rgba(37, 99, 235, 0)');
   ctx.fillStyle = glow;
   ctx.fillRect(0, 0, width, height);
 
-  // Border
+  // Outer Border
   ctx.strokeStyle = 'rgba(59, 130, 246, 0.35)';
-  ctx.lineWidth = 2;
+  ctx.lineWidth = 1.5;
   ctx.beginPath();
-  ctx.roundRect(2, 2, width - 4, height - 4, 12);
+  ctx.roundRect(1, 1, width - 2, height - 2, 10);
   ctx.stroke();
 
-  // Icon / Logo Box
-  ctx.fillStyle = '#2563eb';
-  ctx.beginPath();
-  ctx.roundRect(30, 24, 46, 46, 10);
-  ctx.fill();
+  // App Icon (54x54 centered)
+  const iconSize = 54;
+  const iconX = (width - iconSize) / 2;
+  const iconY = 20;
 
-  ctx.fillStyle = '#ffffff';
-  ctx.font = 'bold 22px sans-serif';
+  ctx.save();
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.55)';
+  ctx.shadowBlur = 14;
+  ctx.shadowOffsetY = 5;
+  ctx.drawImage(iconImg, iconX, iconY, iconSize, iconSize);
+  ctx.restore();
+
+  // Title
   ctx.textAlign = 'center';
-  ctx.fillText('🔍', 53, 55);
-
-  // Title & Category
-  ctx.textAlign = 'left';
   ctx.fillStyle = '#ffffff';
   ctx.font = 'bold 22px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-  ctx.fillText('META SEO Checker', 88, 44);
+  ctx.fillText('META SEO Checker', width / 2, 104);
 
+  // Subtitle
   ctx.fillStyle = '#38bdf8';
-  ctx.font = 'bold 12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-  ctx.fillText('⚡ Instant On-Page SEO Inspector', 88, 64);
+  ctx.font = 'bold 12.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+  ctx.fillText('⚡ Instant On-Page SEO Inspector', width / 2, 126);
 
-  // Feature Checklist
-  const features = [
-    '✓ Titles, Meta Tags & Canonical',
-    '✓ Headings Hierarchy Tree (H1–H6)',
-    '✓ Image ALT & Dimension Audit',
-    '✓ Open Graph & JSON-LD Schema'
+  // 2x2 Feature Pills (spacious and clear)
+  const pills = [
+    { text: 'Titles & Meta Tags', icon: '⚡' },
+    { text: 'H1–H6 Hierarchy', icon: '📑' },
+    { text: 'Images & Missing ALT', icon: '🖼️' },
+    { text: 'Schema.org JSON-LD', icon: '📄' }
   ];
 
-  ctx.font = '12px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-  features.forEach((feat, idx) => {
-    const fy = 104 + idx * 27;
-    ctx.fillStyle = 'rgba(255, 255, 255, 0.06)';
-    ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+  const pillW = 186;
+  const pillH = 28;
+  const startY = 148;
+  const gapX = 14;
+  const gapY = 8;
+  const leftX = (width - (pillW * 2 + gapX)) / 2;
+
+  pills.forEach((p, idx) => {
+    const col = idx % 2;
+    const row = Math.floor(idx / 2);
+    const px = leftX + col * (pillW + gapX);
+    const py = startY + row * (pillH + gapY);
+
+    // Pill background
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.055)';
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
     ctx.lineWidth = 1;
     ctx.beginPath();
-    ctx.roundRect(28, fy - 15, width - 56, 23, 6);
+    ctx.roundRect(px, py, pillW, pillH, 6);
     ctx.fill();
     ctx.stroke();
 
+    // Text & icon
+    ctx.textAlign = 'center';
     ctx.fillStyle = '#e2e8f0';
-    ctx.fillText(feat, 38, fy + 1);
+    ctx.font = '11.5px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
+    ctx.fillText(p.icon + '  ' + p.text, px + pillW / 2, py + 18);
   });
 
   // Footer
+  ctx.textAlign = 'center';
   ctx.fillStyle = '#94a3b8';
   ctx.font = '11px -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif';
-  ctx.textAlign = 'center';
-  ctx.fillText('🔒 100% Local • Zero External Server Requests', width / 2, 238);
+  ctx.fillText('🔒 100% In-Browser Privacy • Zero Servers • Free', width / 2, 248);
 
   const outPath = path.join(storeAssetsDir, 'promo_small_tile_440x280.png');
   fs.writeFileSync(outPath, canvas.toBuffer('image/png'));
